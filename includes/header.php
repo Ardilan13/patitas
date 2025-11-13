@@ -39,7 +39,7 @@ $tipo_usuario = $usuario_activo ? $_SESSION['usuario']['tipo_usuario'] : null;
                     <?php if (!$usuario_activo): ?>
                         <!-- Menú público -->
                         <li><a href="<?= $base_url ?>index.php">Inicio</a></li>
-                        <li><a href="<?= $base_url ?>pages/buscar_cuidador.php">Buscar Cuidadores</a></li>
+                        <li><a href="<?= $base_url ?>pages/nosotros.php">Nosotros</a></li>
                         <li><a href="<?= $base_url ?>pages/registro.php">Crear cuenta</a></li>
                         <li><a href="<?= $base_url ?>pages/login.php" class="btn-login">Iniciar Sesión</a></li>
                     <?php else: ?>

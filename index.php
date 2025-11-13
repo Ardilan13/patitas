@@ -1,8 +1,10 @@
 <?php include 'includes/header.php'; ?>
 
 <main>
-    <section class="hero">
-        <div class="container">
+    <!-- HERO CON IMAGEN DE FONDO -->
+    <section class="hero" style="background: url('assets/img/baner.jpg') center/cover no-repeat; color: white; position: relative;">
+        <div style="background-color: rgba(0,0,0,0.5); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
             <h2>Encuentra el cuidador perfecto para tu mascota</h2>
             <p>Conectamos dueños responsables con cuidadores verificados en Bucaramanga</p>
             <div class="cta-buttons">
@@ -17,24 +19,28 @@
             <h3>Nuestros Servicios</h3>
             <div class="servicios-grid">
                 <div class="servicio-card">
+                    <img src="assets/img/var1.avif" alt="Paseos" style="width:100%; border-radius:10px; margin-bottom:10px;">
                     <div class="icono">🚶</div>
                     <h4>Paseos</h4>
                     <p>Desde $12,000/hora</p>
                     <p>Paseos diarios para mantener a tu mascota activa y feliz</p>
                 </div>
                 <div class="servicio-card">
+                    <img src="assets/img/var2.webp" alt="Cuidado por horas" style="width:100%; border-radius:10px; margin-bottom:10px;">
                     <div class="icono">⏰</div>
                     <h4>Cuidado por Horas</h4>
                     <p>Desde $8,500/hora</p>
                     <p>Atención temporal cuando lo necesites</p>
                 </div>
                 <div class="servicio-card">
+                    <img src="assets/img/var3.jpg" alt="Guardería" style="width:100%; border-radius:10px; margin-bottom:10px;">
                     <div class="icono">🏠</div>
                     <h4>Guardería</h4>
                     <p>Desde $35,000/día</p>
                     <p>Cuidado completo mientras estás fuera</p>
                 </div>
                 <div class="servicio-card">
+                    <img src="assets/img/baner.jpg" alt="Servicios extra" style="width:100%; border-radius:10px; margin-bottom:10px;">
                     <div class="icono">✨</div>
                     <h4>Servicios Extra</h4>
                     <p>Desde $50,000</p>
@@ -56,7 +62,7 @@
                 <div class="paso">
                     <span class="numero">2</span>
                     <h4>Busca y Conecta</h4>
-                    <p>Encuentra cuidadores verificados cerca de ti</p>
+                    <p>Encuentra cuidadores cerca de ti</p>
                 </div>
                 <div class="paso">
                     <span class="numero">3</span>

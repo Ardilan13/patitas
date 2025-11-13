@@ -16,15 +16,15 @@ $usuario = $_SESSION['usuario'];
         <p>Gracias por ofrecer tus servicios. Aquí puedes administrar tus anuncios.</p>
         <div class="dashboard-actions">
             <a href="anuncios_crear.php" class="btn-submit">➕ Crear nuevo anuncio</a>
-            <a href="anuncios_ver.php" class="btn-secondary">📋 Ver mis anuncios</a>
-            <a href="reservas.php" class="btn-secondary">📅 Ver mis reservados</a>
+            <a href="anuncios_ver.php" class="btn btn-secondary">📋 Ver mis anuncios</a>
+            <a href="reservas.php" class="btn btn-secondary">📅 Ver mis reservados</a>
         </div>
 
     <?php elseif ($usuario['tipo_usuario'] === 'dueno'): ?>
         <p>Explora los cuidadores disponibles y encuentra el mejor para tu mascota 🐶🐱</p>
         <div class="dashboard-actions">
             <a href="anuncios_ver.php" class="btn-submit">🔍 Ver anuncios disponibles</a>
-            <a href="reservas.php" class="btn-secondary">📅 Mis reservas</a>
+            <a href="reservas.php" class="btn btn-secondary">📅 Mis reservas</a>
         </div>
     <?php endif; ?>
 </div>

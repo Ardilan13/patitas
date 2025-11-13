@@ -8,14 +8,19 @@
 -- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
 START TRANSACTION;
+
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
+;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
+;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
+;
+/*!40101 SET NAMES utf8mb4 */
+;
 
 --
 -- Base de datos: `patitas_seguras`
@@ -87,8 +92,8 @@ CREATE TABLE `mascotas` (
 
 CREATE TABLE `reservas` (
   `id` int(11) NOT NULL,
-  `dueno_id` int(11) NOT NULL,
-  `cuidador_id` int(11) DEFAULT NULL,
+  `dueno_id` int(11) DEFAULT NULL,
+  `cuidador_id` int(11) NOT NULL,
   `tipo_servicio` enum('paseo','cuidado_horas','guarderia','otro') NOT NULL,
   `fecha_inicio` datetime NOT NULL,
   `fecha_fin` datetime DEFAULT NULL,
@@ -181,20 +186,17 @@ ALTER TABLE `cuidadores`
 --
 -- AUTO_INCREMENT de la tabla `mascotas`
 --
-ALTER TABLE `mascotas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `mascotas` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
-ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `reservas` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `usuarios` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -226,8 +228,12 @@ ALTER TABLE `mascotas`
 ALTER TABLE `reservas`
   ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`dueno_id`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`cuidador_id`) REFERENCES `usuarios` (`id`);
+
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
+;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
+;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
+;
