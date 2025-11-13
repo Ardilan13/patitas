@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const crearForm = document.getElementById("form-crear-anuncio");
   const contenedor = document.getElementById("anuncios-container");
 
+  let anunciosOriginales = [];
+
   // Crear anuncio
   if (crearForm) {
     crearForm.addEventListener("submit", async (e) => {
@@ -21,28 +23,107 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Listar anuncios
   if (contenedor) {
-    fetch("../api/anuncios/listar.php")
-      .then((res) => res.json())
-      .then((anuncios) => {
-        contenedor.innerHTML = anuncios.length
-          ? anuncios
-              .map(
-                (a) => `
-              <div class="anuncio-card">
-                <h3>${a.tipo_servicio}</h3>
-                <p><strong>Inicio:</strong> ${a.fecha_inicio}</p>
-                <p><strong>Precio:</strong> $${a.precio_total}</p>
-                <p><strong>Notas:</strong> ${a.notas || "Sin notas"}</p>
-                ${
-                  !a.dueno_id
-                    ? `<button class="btn-submit" data-id="${a.id}">Reservar</button>`
-                    : ""
-                }
-              </div>`
-              )
-              .join("")
-          : "<p>No hay anuncios disponibles</p>";
-      });
+    cargarAnuncios();
+  }
+
+  async function cargarAnuncios() {
+    const res = await fetch("../api/anuncios/listar.php");
+    anunciosOriginales = await res.json();
+    aplicarFiltros();
+  }
+
+  function aplicarFiltros() {
+    const filtroServicio =
+      document.getElementById("filtro-servicio")?.value || "";
+    const filtroPrecioMin =
+      parseFloat(document.getElementById("filtro-precio-min")?.value) || 0;
+    const filtroPrecioMax =
+      parseFloat(document.getElementById("filtro-precio-max")?.value) ||
+      Infinity;
+    const filtroFecha = document.getElementById("filtro-fecha")?.value || "";
+    const ordenar =
+      document.getElementById("filtro-ordenar")?.value || "fecha-desc";
+
+    let anunciosFiltrados = anunciosOriginales.filter((a) => {
+      const cumpleServicio =
+        !filtroServicio || a.tipo_servicio === filtroServicio;
+      const cumplePrecio =
+        parseFloat(a.precio_total) >= filtroPrecioMin &&
+        parseFloat(a.precio_total) <= filtroPrecioMax;
+      const cumpleFecha = !filtroFecha || a.fecha_inicio === filtroFecha;
+
+      return cumpleServicio && cumplePrecio && cumpleFecha;
+    });
+
+    // Ordenar
+    anunciosFiltrados.sort((a, b) => {
+      switch (ordenar) {
+        case "fecha-asc":
+          return new Date(a.fecha_inicio) - new Date(b.fecha_inicio);
+        case "fecha-desc":
+          return new Date(b.fecha_inicio) - new Date(a.fecha_inicio);
+        case "precio-asc":
+          return parseFloat(a.precio_total) - parseFloat(b.precio_total);
+        case "precio-desc":
+          return parseFloat(b.precio_total) - parseFloat(a.precio_total);
+        default:
+          return 0;
+      }
+    });
+
+    mostrarAnuncios(anunciosFiltrados);
+  }
+
+  function mostrarAnuncios(anuncios) {
+    contenedor.innerHTML = anuncios.length
+      ? anuncios
+          .map(
+            (a) => `
+          <div class="anuncio-card">
+            <h3>${a.tipo_servicio}</h3>
+            <p><strong>Inicio:</strong> ${a.fecha_inicio}</p>
+            <p><strong>Precio:</strong> $${parseFloat(a.precio_total).toFixed(
+              2
+            )}</p>
+            <p><strong>Notas:</strong> ${a.notas || "Sin notas"}</p>
+            ${
+              !a.dueno_id
+                ? `<button class="btn-submit" data-id="${a.id}">Reservar</button>`
+                : ""
+            }
+          </div>`
+          )
+          .join("")
+      : "<p>No hay anuncios que coincidan con los filtros</p>";
+  }
+
+  // Event listeners para filtros
+  const filtros = [
+    "filtro-servicio",
+    "filtro-precio-min",
+    "filtro-precio-max",
+    "filtro-fecha",
+    "filtro-ordenar",
+  ];
+  filtros.forEach((id) => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.addEventListener("change", aplicarFiltros);
+      elemento.addEventListener("input", aplicarFiltros);
+    }
+  });
+
+  // Limpiar filtros
+  const btnLimpiar = document.getElementById("btn-limpiar-filtros");
+  if (btnLimpiar) {
+    btnLimpiar.addEventListener("click", () => {
+      document.getElementById("filtro-servicio").value = "";
+      document.getElementById("filtro-precio-min").value = "";
+      document.getElementById("filtro-precio-max").value = "";
+      document.getElementById("filtro-fecha").value = "";
+      document.getElementById("filtro-ordenar").value = "fecha-desc";
+      aplicarFiltros();
+    });
   }
 
   // Reservar anuncio
@@ -56,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const json = await res.json();
       alert(json.message);
-      if (json.success) location.reload();
+      if (json.success) cargarAnuncios();
     }
   });
 });
@@ -66,7 +147,6 @@ async function enviarFormulario(formId, alertId, redireccion = null) {
   const alertBox = document.getElementById(alertId);
   const formData = new FormData(form);
 
-  // Obtener la acción del formulario (el archivo PHP al que apunta)
   const url = form.getAttribute("action");
 
   try {
