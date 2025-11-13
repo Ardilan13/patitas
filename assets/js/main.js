@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
               .map(
                 (a) => `
               <div class="anuncio-card">
-                <h3>${a.tipo_servicio} 🐾</h3>
+                <h3>${a.tipo_servicio}</h3>
                 <p><strong>Inicio:</strong> ${a.fecha_inicio}</p>
                 <p><strong>Precio:</strong> $${a.precio_total}</p>
                 <p><strong>Notas:</strong> ${a.notas || "Sin notas"}</p>
