@@ -11,7 +11,7 @@ $base_url = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF'], 2)
     <title>Patitas Seguras - Cuidado de Mascotas en Bucaramanga</title>
     <meta name="keywords" content="cuidado mascotas, paseadores, guardería mascotas, Bucaramanga">
 
-    <!-- 🔗 Rutas absolutas dinámicas -->
+    <!-- Rutas absolutas dinámicas -->
     <link rel="stylesheet" href="<?= $base_url ?>assets/css/style.css">
     <link rel="icon" type="image/png" href="<?= $base_url ?>assets/img/logo.png">
 </head>
@@ -21,7 +21,8 @@ $base_url = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF'], 2)
         <nav class="navbar">
             <div class="container">
                 <div class="logo">
-                    <h1>🐾 Patitas Seguras</h1>
+                    <img src="<?= $base_url ?>assets/img/logo.png" alt="Patitas Seguras Logo" class="logo-img">
+                    <h1>Patitas Seguras</h1>
                 </div>
                 <ul class="nav-menu">
                     <li><a href="<?= $base_url ?>index.php">Inicio</a></li>

@@ -34,7 +34,7 @@
             <select name="tipo_usuario" required>
                 <option value="">Selecciona...</option>
                 <option value="cuidador">Cuidador</option>
-                <option value="propietario">Propietario</option>
+                <option value="dueno">Dueño</option>
             </select>
         </div>
 

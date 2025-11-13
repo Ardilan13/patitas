@@ -52,6 +52,17 @@ body {
   align-items: center;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
 .logo h1 {
   color: var(--primary-color);
   font-size: 1.8rem;
