@@ -7,7 +7,7 @@
             <p>Conectamos dueños responsables con cuidadores verificados en Bucaramanga</p>
             <div class="cta-buttons">
                 <a href="pages/buscar_cuidador.php" class="btn btn-primary">Buscar Cuidador</a>
-                <a href="pages/registro_cuidador.php" class="btn btn-secondary">Ser Cuidador</a>
+                <a href="pages/registro.php" class="btn btn-secondary">Ser Cuidador</a>
             </div>
         </div>
     </section>
