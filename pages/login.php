@@ -22,7 +22,7 @@
 <script>
     document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        enviarFormulario('loginForm', 'alert', 'dashboard.php');
+        enviarFormulario('loginForm', 'alert', '<?= $base_url ?>pages/dashboard.php');
     });
 </script>
 

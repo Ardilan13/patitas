@@ -21,7 +21,7 @@ $tipo_usuario = $usuario_activo ? $_SESSION['usuario']['tipo_usuario'] : null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patitas Seguras</title>
+    <title>Secure Pets</title>
     <meta name="keywords" content="cuidado mascotas, paseadores, guardería mascotas, Bucaramanga">
     <link rel="stylesheet" href="<?= $base_url ?>assets/css/style.css">
     <link rel="icon" type="image/png" href="<?= $base_url ?>assets/img/logo.png">
@@ -32,8 +32,8 @@ $tipo_usuario = $usuario_activo ? $_SESSION['usuario']['tipo_usuario'] : null;
         <nav class="navbar">
             <div class="container">
                 <div class="logo">
-                    <img src="<?= $base_url ?>assets/img/logo.png" alt="Patitas Seguras Logo" class="logo-img">
-                    <h1>Patitas Seguras</h1>
+                    <img src="<?= $base_url ?>assets/img/logo.png" alt="Secure Pets Logo" class="logo-img">
+                    <h1>Secure Pets</h1>
                 </div>
                 <ul class="nav-menu">
                     <?php if (!$usuario_activo): ?>

@@ -33,7 +33,7 @@ try {
     ");
     $stmt->execute([$nombre, $apellido, $email, $telefono, $password, $tipo, $direccion, $ciudad]);
 
-    echo json_encode(["success" => true, "message" => "Registro exitoso. ¡Bienvenido a Patitas Seguras!"]);
+    echo json_encode(["success" => true, "message" => "Registro exitoso. ¡Bienvenido a Secure Pets!"]);
 } catch (Exception $e) {
     error_log($e->getMessage());
     echo json_encode(["success" => false, "message" => "Error en el servidor."]);

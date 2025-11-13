@@ -167,7 +167,7 @@ textarea {
 }
 
 .logo-img {
-  width: 50px;
+  width: 80px;
   height: auto;
   margin-right: 10px;
 }
@@ -212,7 +212,7 @@ textarea {
     var(--secondary-color)
   );
   color: white;
-  padding: 6rem 0;
+  padding: 12rem 0;
   text-align: center;
 }
 

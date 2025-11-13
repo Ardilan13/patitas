@@ -1,11 +1,11 @@
 <?php include '../includes/header.php'; ?>
 
 <!-- HERO CON IMAGEN -->
-<section class="hero" style="background: url('../assets/img/baner.jpg') center/cover no-repeat; position: relative; color: white;">
+<section class="hero" style="background: url('../assets/img/baner1.png') top/cover no-repeat; position: relative; color: white;">
     <div style="background-color: rgba(0,0,0,0.55); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
     <div class="container" style="position: relative; z-index: 2;">
         <h2>Sobre Nosotros 🐶</h2>
-        <p>Conoce más sobre <strong>Patitas Seguras</strong>, plataforma que conecta dueños de mascotas con cuidadores apasionados.</p>
+        <p>Conoce más sobre <strong>Secure Pets</strong>, plataforma que conecta dueños de mascotas con cuidadores apasionados.</p>
         <span>“Más que un cuidado, siempre una compañía segura.”</span>
     </div>
 </section>
@@ -14,7 +14,7 @@
     <div class="dashboard-container" style="background: #fff; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 2rem;">
         <h2 style="color: var(--primary-color); text-align:center;">Nuestra Historia</h2>
         <p style="text-align: justify; margin-top: 1rem;">
-            <strong>Patitas Seguras</strong> nació con la misión de brindar tranquilidad a los dueños de mascotas y generar oportunidades para cuidadores apasionados por los animales.
+            <strong>Secure Pets</strong> nació con la misión de brindar tranquilidad a los dueños de mascotas y generar oportunidades para cuidadores apasionados por los animales.
             Nuestra plataforma busca crear conexiones basadas en la confianza, la seguridad y el amor por los peludos que alegran nuestros días.
         </p>
 
@@ -54,7 +54,7 @@
             <div class="servicio-card">
                 <div class="icono">🔒</div>
                 <h4>Confianza</h4>
-                <p>Servicios verificados y seguros para todos.</p>
+                <p>Servicios seguros para todos.</p>
             </div>
             <div class="servicio-card">
                 <div class="icono">🤝</div>

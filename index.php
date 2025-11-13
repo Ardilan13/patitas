@@ -2,13 +2,13 @@
 
 <main>
     <!-- HERO CON IMAGEN DE FONDO -->
-    <section class="hero" style="background: url('assets/img/baner.jpg') center/cover no-repeat; color: white; position: relative;">
+    <section class="hero" style="background: url('assets/img/baner.jpg') top/cover no-repeat; color: white; position: relative;">
         <div style="background-color: rgba(0,0,0,0.5); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
         <div class="container" style="position: relative; z-index: 2;">
             <h2>Encuentra el cuidador perfecto para tu mascota</h2>
-            <p>Conectamos dueños responsables con cuidadores verificados en Bucaramanga</p>
+            <p>Conectamos dueños responsables con cuidadores en Bucaramanga</p>
             <div class="cta-buttons">
-                <a href="pages/buscar_cuidador.php" class="btn btn-primary">Buscar Cuidador</a>
+                <a href="pages/login.php" class="btn btn-primary">Buscar Cuidador</a>
                 <a href="pages/registro.php" class="btn btn-secondary">Ser Cuidador</a>
             </div>
         </div>
