@@ -13,17 +13,15 @@ $usuario = $_SESSION['usuario'];
     <h2>Bienvenido, <?= htmlspecialchars($usuario['nombre']); ?> 🐾</h2>
 
     <?php if ($usuario['tipo_usuario'] === 'cuidador'): ?>
-        <p>Gracias por ofrecer tus servicios. Aquí puedes crear y administrar tus anuncios.</p>
-        <a href="anuncios_crear.php" class="btn-submit">Crear nuevo anuncio</a>
-
-        <div class="anuncios-lista">
-            <h3>Mis anuncios</h3>
-            <p>(Aquí se listarán los anuncios del cuidador desde la base de datos)</p>
+        <p>Gracias por ofrecer tus servicios. Aquí puedes administrar tus anuncios.</p>
+        <div class="dashboard-actions">
+            <a href="anuncios_crear.php" class="btn-submit">➕ Crear nuevo anuncio</a>
+            <a href="anuncios_ver.php" class="btn-secondary">📋 Ver mis anuncios</a>
         </div>
 
-    <?php elseif ($usuario['tipo_usuario'] === 'propietario'): ?>
+    <?php elseif ($usuario['tipo_usuario'] === 'dueno'): ?>
         <p>Explora los cuidadores disponibles y encuentra el mejor para tu mascota 🐶🐱</p>
-        <a href="anuncios_ver.php" class="btn-submit">Ver anuncios disponibles</a>
+        <a href="anuncios_ver.php" class="btn-submit">🔍 Ver anuncios disponibles</a>
     <?php endif; ?>
 </div>
 
