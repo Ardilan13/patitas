@@ -35,9 +35,11 @@ $usuario = $_SESSION['usuario'];
                         ${r.dueno_nombre ? `
                             <p><strong>Dueño:</strong> ${r.dueno_nombre}</p>
                             <p><strong>Email:</strong> ${r.dueno_email}</p>
+                            <p><strong>Telefono:</strong> ${r.dueno_telefono}</p>
                         ` : `
                             <p><strong>Cuidador:</strong> ${r.cuidador_nombre}</p>
                             <p><strong>Email:</strong> ${r.cuidador_email}</p>
+                            <p><strong>Telefono:</strong> ${r.cuidador_telefono}</p>
                         `}
                         <p><strong>Desde:</strong> ${r.fecha_inicio}</p>
                         <p><strong>Hasta:</strong> ${r.fecha_fin || '—'}</p>
@@ -48,6 +50,7 @@ $usuario = $_SESSION['usuario'];
                         <p><strong>Estado:</strong>
                             <span class="estado ${r.estado.toLowerCase()}">${r.estado}</span>
                         </p>
+                        ${window.tipoUsuario === "dueno" ? `<button class="btn-cancelar" data-id="${r.id}">Cancelar reserva</button>` : ""}
                     </div>
                 `).join("")}
             </div>

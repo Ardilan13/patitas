@@ -18,7 +18,7 @@ try {
             SELECT 
                 r.id, r.tipo_servicio, r.fecha_inicio, r.fecha_fin, r.duracion_horas,
                 r.precio_total, r.estado, r.direccion_servicio, r.notas,
-                u.nombre AS dueno_nombre, u.email AS dueno_email
+                u.nombre AS dueno_nombre, u.email AS dueno_email, u.telefono AS dueno_telefono
             FROM reservas r
             INNER JOIN usuarios u ON r.dueno_id = u.id
             WHERE r.cuidador_id = ?
@@ -31,7 +31,7 @@ try {
             SELECT 
                 r.id, r.tipo_servicio, r.fecha_inicio, r.fecha_fin, r.duracion_horas,
                 r.precio_total, r.estado, r.direccion_servicio, r.notas,
-                u.nombre AS cuidador_nombre, u.email AS cuidador_email
+                u.nombre AS cuidador_nombre, u.email AS cuidador_email, u.telefono AS cuidador_telefono
             FROM reservas r
             INNER JOIN usuarios u ON r.cuidador_id = u.id
             WHERE r.dueno_id = ?

@@ -28,7 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function cargarAnuncios() {
     const res = await fetch("../api/anuncios/listar.php");
-    anunciosOriginales = await res.json();
+    let data = await res.json();
+
+    const ahora = new Date();
+
+    // Si es cuidador → ver todo
+    if (window.tipoUsuario === "cuidador") {
+      anunciosOriginales = data;
+    } else {
+      // Si es dueño → ver solo los no vencidos
+      anunciosOriginales = data.filter((a) => {
+        if (
+          !a.fecha_fin ||
+          (a.fecha_fin === "0000-00-00 00:00:00" &&
+            new Date(a.fecha_inicio) > ahora)
+        )
+          return true;
+        return (
+          new Date(a.fecha_fin) < ahora && new Date(a.fecha_inicio) > ahora
+        );
+      });
+    }
+
     aplicarFiltros();
   }
 
@@ -50,7 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const cumplePrecio =
         parseFloat(a.precio_total) >= filtroPrecioMin &&
         parseFloat(a.precio_total) <= filtroPrecioMax;
-      const cumpleFecha = !filtroFecha || a.fecha_inicio === filtroFecha;
+      const fechaAnuncio = a.fecha_inicio.split(" ")[0];
+      const cumpleFecha = !filtroFecha || fechaAnuncio === filtroFecha;
 
       return cumpleServicio && cumplePrecio && cumpleFecha;
     });
@@ -79,23 +101,44 @@ document.addEventListener("DOMContentLoaded", () => {
       ? anuncios
           .map(
             (a) => `
-          <div class="anuncio-card">
-            <h3>${a.tipo_servicio}</h3>
-            <p><strong>Inicio:</strong> ${a.fecha_inicio}</p>
-            <p><strong>Precio:</strong> $${parseFloat(a.precio_total).toFixed(
-              2
-            )}</p>
-            <p><strong>Notas:</strong> ${a.notas || "Sin notas"}</p>
-            ${
-              !a.dueno_id
-                ? `<button class="btn-submit" data-id="${a.id}">Reservar</button>`
-                : ""
-            }
-          </div>`
+      <div class="anuncio-card">
+        <h3>${a.tipo_servicio}</h3>
+        <p><strong>Inicio:</strong> ${a.fecha_inicio}</p>
+        <p><strong>Fin:</strong> ${a.fecha_fin ?? "No definido"}</p>
+        <p><strong>Precio:</strong> $${parseFloat(a.precio_total).toFixed(
+          2
+        )}</p>
+        <p><strong>Notas:</strong> ${a.notas || "Sin notas"}</p>
+
+        ${
+          window.tipoUsuario === "cuidador"
+            ? `<button class="btn-delete" data-delete="${a.id}">Eliminar</button>`
+            : ""
+        }
+
+      </div>`
           )
           .join("")
       : "<p>No hay anuncios que coincidan con los filtros</p>";
   }
+
+  document.addEventListener("click", async (e) => {
+    if (e.target.matches(".btn-delete[data-delete]")) {
+      if (!confirm("¿Seguro que deseas eliminar este anuncio?")) return;
+
+      const id = e.target.getAttribute("data-delete");
+
+      const res = await fetch("../api/anuncios/eliminar.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      const json = await res.json();
+      alert(json.message);
+      if (json.success) cargarAnuncios();
+    }
+  });
 
   // Event listeners para filtros
   const filtros = [
@@ -140,6 +183,25 @@ document.addEventListener("DOMContentLoaded", () => {
       if (json.success) cargarAnuncios();
     }
   });
+});
+
+document.addEventListener("click", async (e) => {
+  if (e.target.matches(".btn-cancelar")) {
+    const id = e.target.getAttribute("data-id");
+
+    if (!confirm("¿Seguro que deseas cancelar esta reserva?")) return;
+
+    const res = await fetch("../api/reservas/cancelar.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+
+    const json = await res.json();
+    alert(json.message);
+
+    if (json.success) location.reload();
+  }
 });
 
 async function enviarFormulario(formId, alertId, redireccion = null) {

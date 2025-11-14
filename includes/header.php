@@ -27,6 +27,10 @@ $tipo_usuario = $usuario_activo ? $_SESSION['usuario']['tipo_usuario'] : null;
     <link rel="icon" type="image/png" href="<?= $base_url ?>assets/img/logo.png">
 </head>
 
+<script>
+    window.tipoUsuario = "<?= $_SESSION['usuario']['tipo_usuario'] ?>";
+</script>
+
 <body>
     <header>
         <nav class="navbar">
